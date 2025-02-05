@@ -1,0 +1,57 @@
+.mainContainer {
+  border-radius: 20px;
+  background-color: #e7e5df;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin: 15px;
+  padding: 10px;
+}
+
+.projectItem {
+  font-weight: bold;
+  font-size: smaller;
+}
+.btnGreen {
+  background-color: green;
+  border-radius: 10px;
+  width: 60px;
+  height: 20px;
+  color: white;
+  font-size: smaller;
+}
+.btnRed {
+  background-color: red;
+  border-radius: 10px;
+  width: 60px;
+  height: 20px;
+  color: white;
+  font-size: smaller;
+}
+.btnYellow {
+  background-color: orange;
+  border-radius: 10px;
+  width: 60px;
+  height: 20px;
+  color: white;
+  font-size: smaller;
+}
+h1 {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+h4 {
+  font-size: smaller;
+}
+.dueDate {
+  font-size: smaller;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.assignee {
+  font-size: smaller;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
