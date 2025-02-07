@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SunsetIcon = () => (
   <svg
     width="20"
