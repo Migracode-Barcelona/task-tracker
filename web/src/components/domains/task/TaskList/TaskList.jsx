@@ -12,10 +12,10 @@ function TaskList(props) {
   // create some task items here and return one task list for each item you have
   return (
     <div className={styles.listWrapper}>
-      {props.TaskListInfo.map((listItem, index) => {
+      {props.TaskListInfo.map((listItem) => {
         return (
           <TaskItem
-            key={index}
+            key={listItem.id}
             ProjectTask={listItem.ProjectTask}
             ProjectStatus={listItem.ProjectStatus}
             date={listItem.date}
