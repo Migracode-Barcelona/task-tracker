@@ -15,27 +15,25 @@ function TaskItem(props) {
   };
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.container}>
-        <h4 className={styles.Task}>{props.ProjectTask}</h4>
-        <button className={colorState()}>{props.ProjectStatus}</button>
-        <div className={styles.deadlineBox}>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/430/430485.png"
-            alt="icon for deadlines"
-          />
-          <p className={styles.taskDate}>{props.date}</p>
-        </div>
-        <div className={styles.participantBox}>
-          <img
-            src="https://www.svgrepo.com/show/502898/user-group.svg"
-            alt="icon for participants"
-          />
-          <p className={styles.participants}>{props.participants}</p>
-        </div>
-
-        <h4 className={styles.project}>{props.project}</h4>
+    <div className={styles.container}>
+      <h4 className={styles.Task}>{props.ProjectTask}</h4>
+      <button className={colorState()}>{props.ProjectStatus}</button>
+      <div className={styles.deadlineBox}>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/430/430485.png"
+          alt="icon for deadlines"
+        />
+        <p className={styles.taskDate}>{props.date}</p>
       </div>
+      <div className={styles.participantBox}>
+        <img
+          src="https://www.svgrepo.com/show/502898/user-group.svg"
+          alt="icon for participants"
+        />
+        <p className={styles.participants}>{props.participants}</p>
+      </div>
+
+      <h4 className={styles.project}>{props.project}</h4>
     </div>
   );
 }
