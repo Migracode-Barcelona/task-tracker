@@ -21,7 +21,8 @@
   width: 60px;
   height: 20px;
   border-radius: 15px;
-  font-size: 15px;
+  font-size: 13px;
+  text-align: center;
 }
 
 .buttonOrange {
@@ -30,7 +31,8 @@
   width: 60px;
   height: 20px;
   border-radius: 15px;
-  font-size: 15px;
+  font-size: 13px;
+  text-align: center;
 }
 
 .buttonGreen {
@@ -39,22 +41,13 @@
   width: 60px;
   height: 20px;
   border-radius: 15px;
-  font-size: 15px;
+  font-size: 13px;
+  text-align: center;
 }
 
 .deadlineBox,
 .participantBox {
   display: flex;
-}
-
-.participantBox img {
-  width: 20px;
-}
-
-.deadlineBox img {
-  width: 17px;
-  height: 17px;
-  margin-right: 5px;
 }
 
 .Task,
@@ -63,4 +56,15 @@
 .participants {
   font-size: 15px;
   text-align: start;
+  margin-left: 7px;
+}
+
+.ParticipantIcon {
+  width: 20px;
+}
+
+.SunsetIcon {
+  width: 17px;
+  height: 17px;
+  margin-right: 5px;
 }

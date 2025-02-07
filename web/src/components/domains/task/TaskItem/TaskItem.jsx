@@ -1,5 +1,7 @@
+import SunsetIcon from '../../../Icons/sunsetIcon';
 import styles from './TaskItem.module.css';
 import { PropTypes } from 'prop-types';
+import ParticipantIcon from '../../../Icons/participantIcon';
 
 function TaskItem(props) {
   const colorState = () => {
@@ -19,17 +21,11 @@ function TaskItem(props) {
       <h4 className={styles.Task}>{props.ProjectTask}</h4>
       <span className={colorState()}>{props.ProjectStatus}</span>
       <div className={styles.deadlineBox}>
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/430/430485.png"
-          alt="icon for deadlines"
-        />
+        <SunsetIcon className={styles.SunsetIcon}></SunsetIcon>
         <p className={styles.taskDate}>{props.date}</p>
       </div>
       <div className={styles.participantBox}>
-        <img
-          src="https://www.svgrepo.com/show/502898/user-group.svg"
-          alt="icon for participants"
-        />
+        <ParticipantIcon className={styles.ParticipantIcon}></ParticipantIcon>
         <p className={styles.participants}>{props.participants}</p>
       </div>
 

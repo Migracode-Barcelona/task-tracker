@@ -1,7 +1,6 @@
 import styles from './TaskList.module.css';
 import TaskItem from '../TaskItem/TaskItem';
 import { PropTypes } from 'prop-types';
-
 function TaskList(props) {
   return (
     <div className={styles.listWrapper}>
