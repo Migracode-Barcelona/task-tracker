@@ -17,7 +17,7 @@ function TaskItem(props) {
   return (
     <div className={styles.container}>
       <h4 className={styles.Task}>{props.ProjectTask}</h4>
-      <button className={colorState()}>{props.ProjectStatus}</button>
+      <span className={colorState()}>{props.ProjectStatus}</span>
       <div className={styles.deadlineBox}>
         <img
           src="https://cdn-icons-png.flaticon.com/512/430/430485.png"
