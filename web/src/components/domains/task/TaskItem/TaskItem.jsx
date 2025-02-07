@@ -12,13 +12,13 @@ Add the necessary props to the component.
 function TaskItem({ ProjectName, priority, dueDate, assignee, project }) {
   function colorBox() {
     if (priority === 'low') {
-      return styles.btnGreen;
+      return `${styles.btn} ${styles.btnGreen}`;
     }
     if (priority === 'medium') {
-      return styles.btnYellow;
+      return `${styles.btn} ${styles.btnYellow}`;
     }
     if (priority === 'high') {
-      return styles.btnRed;
+      return `${styles.btn} ${styles.btnRed}`;
     }
   }
 
@@ -28,16 +28,11 @@ function TaskItem({ ProjectName, priority, dueDate, assignee, project }) {
         <h4>{ProjectName}</h4>
         <div>
           <button className={colorBox()}>{priority}</button>
+        </div>
+        <div>
           <p className={styles.dueDate}>
             <span>
-              {MyIconSunset().map((photo, index) => (
-                <img
-                  key={index}
-                  src={photo}
-                  alt="Photo"
-                  style={{ width: '20px', height: '20px', marginRight: '5px' }}
-                />
-              ))}
+              <MyIconSunset />
             </span>
             {dueDate}
           </p>
@@ -45,17 +40,11 @@ function TaskItem({ ProjectName, priority, dueDate, assignee, project }) {
 
         <p className={styles.assignee}>
           <span>
-            {StudentIcon().map((pic, index) => (
-              <img
-                key={index}
-                src={pic}
-                alt="Photo"
-                style={{ width: '20px', height: '20px', marginRight: '5px' }}
-              />
-            ))}
+            <StudentIcon />
           </span>
           {assignee}
         </p>
+
         <p className={styles.projectItem}>{project}</p>
       </div>
     </>

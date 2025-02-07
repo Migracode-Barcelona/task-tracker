@@ -1,7 +1,7 @@
 const MyIconSunset = () => (
   <svg
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 20 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ const MyIconSunset = () => (
     </g>
     <defs>
       <clipPath id="clip0_2106_309">
-        <rect width="20" height="20" fill="white" />
+        <rect width="18" height="18" fill="white" />
       </clipPath>
     </defs>
   </svg>

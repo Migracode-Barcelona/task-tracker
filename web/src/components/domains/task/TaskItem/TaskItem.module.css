@@ -9,31 +9,23 @@
 
 .projectItem {
   font-weight: bold;
-  font-size: smaller;
+  font-size: small;
+}
+.btn {
+  border-radius: 10px;
+  width: 60px;
+  height: 20px;
+  color: white;
+  font-size: small;
 }
 .btnGreen {
   background-color: green;
-  border-radius: 10px;
-  width: 60px;
-  height: 20px;
-  color: white;
-  font-size: smaller;
 }
 .btnRed {
   background-color: red;
-  border-radius: 10px;
-  width: 60px;
-  height: 20px;
-  color: white;
-  font-size: smaller;
 }
 .btnYellow {
   background-color: orange;
-  border-radius: 10px;
-  width: 60px;
-  height: 20px;
-  color: white;
-  font-size: smaller;
 }
 h1 {
   text-align: center;
@@ -41,16 +33,16 @@ h1 {
   margin-bottom: 1rem;
 }
 h4 {
-  font-size: smaller;
+  font-size: small;
 }
 .dueDate {
-  font-size: smaller;
+  font-size: small;
   display: flex;
   align-items: center;
   gap: 5px;
 }
 .assignee {
-  font-size: smaller;
+  font-size: small;
   display: flex;
   align-items: center;
   gap: 5px;
