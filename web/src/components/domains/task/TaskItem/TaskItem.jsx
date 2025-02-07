@@ -10,18 +10,12 @@ export function TaskItem({
 }) {
   return (
     <li className={styles.taskItem}>
-      <h3>{name}</h3>
+      <h3 className="section">{name}</h3>
+      <p className="section">{priority}</p>
+      <p className="section">{releaseDate}</p>
+      <p className="section">{designers.join(', ')}</p>
       <p className="section">
-        <strong>Priority:</strong> {priority}
-      </p>
-      <p className="section">
-        <strong>Release Date:</strong> {releaseDate}
-      </p>
-      <p className="section">
-        <strong>Designers:</strong> {designers.join(', ')}
-      </p>
-      <p className="section">
-        <strong>Project:</strong> {projectName}
+        <strong>{projectName}</strong>
       </p>
     </li>
   );
