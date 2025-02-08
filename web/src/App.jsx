@@ -34,7 +34,7 @@ const taskItems = [
 function App() {
   return (
     <>
-      <TaskList taskItems={taskItems} />
+      <TaskList initialTaskItems={taskItems} />
     </>
   );
 }
