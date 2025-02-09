@@ -21,7 +21,7 @@ const NewTaskForm = ({ handleButton }) => {
           type="text"
           value={textTask}
           id="taskName"
-          className="taskNameInput"
+          className={styles.taskName}
           onChange={(e) => setTextTask(e.target.value)}
         />
       </div>
