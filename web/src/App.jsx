@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import TaskList from './components/domains/task/TaskList/TaskList';
-import NewTaskForm from './components/New-Task/new-task.jsx';
+import NewTaskForm from './components/domains/New-Task/new-task.jsx';
 
 function App() {
   const [TaskListInfo, setTaskListInfo] = useState([
