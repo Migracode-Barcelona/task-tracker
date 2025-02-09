@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import styles from './new-task.module.css';
+import { PropTypes } from 'prop-types';
 
 const NewTaskForm = ({ handleButton }) => {
   const [textTask, setTextTask] = useState('');
@@ -12,7 +14,7 @@ const NewTaskForm = ({ handleButton }) => {
   const [deadline, setDeadline] = useState('');
 
   return (
-    <div className="taskBox">
+    <div className={styles.taskBox}>
       <div>
         <label htmlFor="taskName">Task Name: </label>
         <input
@@ -29,7 +31,7 @@ const NewTaskForm = ({ handleButton }) => {
           type="text"
           value={textProject}
           id="projectName"
-          className="projectNameInput"
+          className={styles.projectNameInput}
           onChange={(e) => setTextProject(e.target.value)}
         />
       </div>
@@ -39,7 +41,7 @@ const NewTaskForm = ({ handleButton }) => {
           type="text"
           value={ProjectStatus}
           id="state"
-          className="status"
+          className={styles.status}
           onChange={(e) => setProjectStatus(e.target.value)}
         />
       </div>
@@ -49,7 +51,7 @@ const NewTaskForm = ({ handleButton }) => {
           type="text"
           value={participants}
           id="participants"
-          className="participants"
+          className={styles.participants}
           onChange={(e) => setParticipants(e.target.value)}
         />
       </div>
@@ -62,11 +64,13 @@ const NewTaskForm = ({ handleButton }) => {
           name="date"
           min="2000-01-01"
           max="2030-12-31"
+          className={styles.date}
           onChange={(e) => setDeadline(e.target.value)}
         />
       </div>
 
       <button
+        className={styles.clickButton}
         onClick={() => {
           handleButton(
             textTask,
@@ -81,6 +85,15 @@ const NewTaskForm = ({ handleButton }) => {
       </button>
     </div>
   );
+};
+
+NewTaskForm.propTypes = {
+  textTaskTask: PropTypes.string.isRequired,
+  textProject: PropTypes.string.isRequired,
+  ProjectStatus: PropTypes.string.isRequired,
+  deadline: PropTypes.string.isRequired,
+  participants: PropTypes.string.isRequired,
+  handleButton: PropTypes.func.isRequired,
 };
 
 export default NewTaskForm;
