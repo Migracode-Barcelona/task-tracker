@@ -45,7 +45,7 @@ function App() {
     participants,
     projectName,
   ) => {
-    setTaskInfo((prevTaskInfo) => [
+    setTaskListInfo((prevTaskInfo) => [
       ...prevTaskInfo,
       {
         id: `T${prevTaskInfo.length + 1}`,
@@ -60,9 +60,9 @@ function App() {
 
   return (
     <>
-      <TaskList></TaskList>
+      <TaskList>{TaskListInfo}</TaskList>
 
-      <NewTaskForm></NewTaskForm>
+      <NewTaskForm handleButton={newTask}></NewTaskForm>
     </>
   );
 }
