@@ -22,14 +22,9 @@ const NewTaskForm = () => {
         />
       </div>
       <div>
-          <label htmlFor="state">Project Status: </label>
-        <input
-          type="text"
-          value={ProjectState}
-          id="state"
-          className="status"
-        />
-     
+        <label htmlFor="state">Project Status: </label>
+        <input type="text" value={ProjectState} id="state" className="status" />
+      </div>
       <div>
         <label htmlFor="participants">Assign Participants: </label>
         <input
