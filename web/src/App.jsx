@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import TaskList from './components/domains/task/TaskList/TaskList';
+import NewTaskForm from './components/New-Task/new-task.jsx';
 
 function App() {
   const [TaskListInfo, setTaskListInfo] = useState([
@@ -40,6 +41,8 @@ function App() {
   return (
     <>
       <TaskList></TaskList>
+
+      <NewTaskForm></NewTaskForm>
     </>
   );
 }

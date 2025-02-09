@@ -1,3 +1,5 @@
+import React from 'react';
+
 const NewTaskForm = () => {
   return (
     <div className="taskBox">
