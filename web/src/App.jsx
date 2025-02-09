@@ -60,7 +60,7 @@ function App() {
 
   return (
     <>
-      <TaskList>{TaskListInfo}</TaskList>
+      <TaskList></TaskList>
 
       <NewTaskForm handleButton={newTask}></NewTaskForm>
     </>

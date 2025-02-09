@@ -19,7 +19,7 @@ const NewTaskForm = (handleButton) => {
           type="text"
           value={textTask}
           id="taskName"
-          className="firstInput"
+          className="taskNameInput"
           onChange={(e) => setTextTask(e.target.value)}
         />
       </div>
@@ -29,7 +29,7 @@ const NewTaskForm = (handleButton) => {
           type="text"
           value={textProject}
           id="projectName"
-          className="secondInput"
+          className="projectNameInput"
           onChange={(e) => setTextProject(e.target.value)}
         />
       </div>
@@ -48,8 +48,8 @@ const NewTaskForm = (handleButton) => {
         <input
           type="text"
           value={participants}
-          id="projectName"
-          className="secondInput"
+          id="participants"
+          className="participants"
           onChange={(e) => setParticipants(e.target.value)}
         />
       </div>
