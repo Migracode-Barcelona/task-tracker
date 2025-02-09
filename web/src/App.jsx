@@ -40,7 +40,7 @@ function App() {
 
   const newTask = (
     taskName,
-    ProjectState,
+    ProjectStatus,
     deadline,
     participants,
     projectName,
@@ -50,9 +50,9 @@ function App() {
       {
         id: `T${prevTaskInfo.length + 1}`,
         ProjectTask: taskName,
-        ProjectStatus: ProjectState,
+        ProjectStatus: ProjectStatus,
         date: deadline,
-        participants: participants,
+        participants: participants.split(','),
         project: projectName,
       },
     ]);

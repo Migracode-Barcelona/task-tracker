@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 
-const NewTaskForm = (handleButton) => {
+const NewTaskForm = ({ handleButton }) => {
   const [textTask, setTextTask] = useState('');
   const [textProject, setTextProject] = useState('');
 
-  const [ProjectState, setProjectState] = useState('');
+  const [ProjectStatus, setProjectStatus] = useState('');
 
   const [participants, setParticipants] = useState('');
 
@@ -37,10 +37,10 @@ const NewTaskForm = (handleButton) => {
         <label htmlFor="state">Project Status: </label>
         <input
           type="text"
-          value={ProjectState}
+          value={ProjectStatus}
           id="state"
           className="status"
-          onChange={(e) => setProjectState(e.target.value)}
+          onChange={(e) => setProjectStatus(e.target.value)}
         />
       </div>
       <div>
@@ -67,15 +67,15 @@ const NewTaskForm = (handleButton) => {
       </div>
 
       <button
-        onClick={() =>
+        onClick={() => {
           handleButton(
             textTask,
-            ProjectState,
-            participants,
+            ProjectStatus,
             deadline,
+            participants,
             textProject,
-          )
-        }
+          );
+        }}
       >
         Create Task
       </button>
