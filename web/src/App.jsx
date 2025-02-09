@@ -1,17 +1,8 @@
 import TaskList from './components/domains/task/TaskList/TaskList';
-// import TaskItem from './components/domains/task/TaskItem/TaskItem';//I intentionally left this on comment to prevent duplication
 
 function App() {
   return (
     <>
-      {/* <TaskItem
-        ProjectTask="Rework UI/UX"
-        ProjectStatus="Low"
-        date="12/05/2025"
-        participants="Said, Rachel"
-        project="Timer App"
-      ></TaskItem> */}
-
       <TaskList
         TaskListInfo={[
           {
