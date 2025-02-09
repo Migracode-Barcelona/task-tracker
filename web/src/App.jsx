@@ -38,6 +38,26 @@ function App() {
     },
   ]);
 
+  const newTask = (
+    taskName,
+    ProjectState,
+    deadline,
+    participants,
+    projectName,
+  ) => {
+    setTaskInfo((prevTaskInfo) => [
+      ...prevTaskInfo,
+      {
+        id: `T${prevTaskInfo.length + 1}`,
+        ProjectTask: taskName,
+        ProjectStatus: ProjectState,
+        date: deadline,
+        participants: participants,
+        project: projectName,
+      },
+    ]);
+  };
+
   return (
     <>
       <TaskList></TaskList>
