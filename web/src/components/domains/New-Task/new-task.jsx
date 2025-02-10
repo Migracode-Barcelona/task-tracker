@@ -15,6 +15,8 @@ const NewTaskForm = ({ handleButton }) => {
 
   return (
     <div className={styles.taskBox}>
+      <h2 className={styles.titleName}>Add A New Task</h2>
+
       <div className={styles.eachInputBox}>
         <label htmlFor="taskName">Task Name: </label>
         <input
