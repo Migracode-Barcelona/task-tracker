@@ -9,15 +9,15 @@ Please make sure to add styles using CSS Modules.
 Add the necessary props to the component.
 */
 
-function TaskItem({ ProjectName, priority, dueDate, assignee, project }) {
+function TaskItem({ ProjectName, Priority, DueDate, Assignee, Project }) {
   function colorBox() {
-    if (priority === 'low') {
+    if (Priority === 'low') {
       return `${styles.btn} ${styles.btnGreen}`;
     }
-    if (priority === 'medium') {
+    if (Priority === 'medium') {
       return `${styles.btn} ${styles.btnYellow}`;
     }
-    if (priority === 'high') {
+    if (Priority === 'high') {
       return `${styles.btn} ${styles.btnRed}`;
     }
   }
@@ -27,14 +27,14 @@ function TaskItem({ ProjectName, priority, dueDate, assignee, project }) {
       <div className={styles.mainContainer}>
         <h4>{ProjectName}</h4>
         <div>
-          <button className={colorBox()}>{priority}</button>
+          <button className={colorBox()}>{Priority}</button>
         </div>
         <div>
           <p className={styles.dueDate}>
             <span>
               <MyIconSunset />
             </span>
-            {dueDate}
+            {DueDate}
           </p>
         </div>
 
@@ -42,10 +42,10 @@ function TaskItem({ ProjectName, priority, dueDate, assignee, project }) {
           <span>
             <StudentIcon />
           </span>
-          {assignee}
+          {Assignee}
         </p>
 
-        <p className={styles.projectItem}>{project}</p>
+        <p className={styles.projectItem}>{Project}</p>
       </div>
     </>
   );
@@ -53,12 +53,10 @@ function TaskItem({ ProjectName, priority, dueDate, assignee, project }) {
 
 TaskItem.propTypes = {
   ProjectName: PropTypes.string.isRequired,
-  priority: PropTypes.oneOf(['low', 'medium', 'high']).isRequired,
-  dueDate: PropTypes.string.isRequired,
-  assignee: PropTypes.string.isRequired,
-  project: PropTypes.string.isRequired,
-  photos: PropTypes.arrayOf(PropTypes.string).isRequired,
-  studentPhotos: PropTypes.arrayOf(PropTypes.string).isRequired,
+  Priority: PropTypes.oneOf(['low', 'medium', 'high']).isRequired,
+  DueDate: PropTypes.string.isRequired,
+  Assignee: PropTypes.string.isRequired,
+  Project: PropTypes.string.isRequired,
 };
 
 export default TaskItem;

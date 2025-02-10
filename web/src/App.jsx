@@ -1,64 +1,64 @@
 // import TaskItem from './components/domains/task/TaskItem/TaskItem';
+import NewTask from './components/domains/task/TaskItem/NewTask';
 import TaskList from './components/domains/task/TaskList/TaskList';
+import { useState } from 'react';
 
 function App() {
+  const [taskInform, setTaskInform] = useState([
+    {
+      id: 1,
+      ProjectName: 'Re-work UI/UX',
+      Priority: 'low',
+      DueDate: '12/05/2025',
+      Assignee: 'Said & Rachel',
+      Project: 'Time App',
+    },
+    {
+      id: 2,
+      ProjectName: 'Dark mode toggle',
+      Priority: 'high',
+      DueDate: '09/03/2025',
+      Assignee: 'Umair & Precious',
+      Project: 'Asa Dark-mode Feature',
+    },
+    {
+      id: 3,
+      ProjectName: 'Accessibility check',
+      Priority: 'medium',
+      DueDate: '15/04/2025',
+      Assignee: 'Michel & Ricardo',
+      Project: 'Timer App',
+    },
+    {
+      id: 4,
+      ProjectName: 'Notification Integration',
+      Priority: 'high',
+      DueDate: '11/03/2025',
+      Assignee: 'Ebetsam & Deborah',
+      Project: 'Timer App',
+    },
+  ]);
+  function newTaskList(event, ProjectName, Project, Assignee) {
+    event.preventDefault();
+    setTaskInform((prevtask) => [
+      ...prevtask,
+      {
+        id: 5,
+        ProjectName,
+        DueDate: new Date().toLocaleDateString(),
+        Project,
+        Assignee,
+        Priority: 'high',
+      },
+    ]);
+  }
   return (
     <>
       <h1>Task Manager</h1>
       {/* <TaskItem /> */}
 
-      <TaskList
-        tasks={[
-          {
-            id: 1,
-            ProjectName: 'Re-work UI/UX',
-            priority: 'low',
-            dueDate: '12/05/2025',
-            assignee: 'Said & Rachel',
-            project: 'Time App',
-            photos: ['https://cdn-icons-png.flaticon.com/512/430/430485.png'],
-            studentPhotos: [
-              'https://www.svgrepo.com/show/502898/user-group.svg',
-            ],
-          },
-          {
-            id: 2,
-            ProjectName: 'Dark mode toggle',
-            priority: 'high',
-            dueDate: '09/03/2025',
-            assignee: 'Umair & Precious',
-            project: 'Asa Dark-mode Feature',
-            photos: ['https://cdn-icons-png.flaticon.com/512/430/430485.png'],
-            studentPhotos: [
-              'https://www.svgrepo.com/show/502898/user-group.svg',
-            ],
-          },
-          {
-            id: 3,
-            ProjectName: 'Accessibility check',
-            priority: 'medium',
-            dueDate: '15/04/2025',
-            assignee: 'Michel & Ricardo',
-            project: 'Timer App',
-            photos: ['https://cdn-icons-png.flaticon.com/512/430/430485.png'],
-            studentPhotos: [
-              'https://www.svgrepo.com/show/502898/user-group.svg',
-            ],
-          },
-          {
-            id: 4,
-            ProjectName: 'Notification Integration',
-            priority: 'high',
-            dueDate: '11/03/2025',
-            assignee: 'Ebetsam & Deborah',
-            project: 'Timer App',
-            photos: ['https://cdn-icons-png.flaticon.com/512/430/430485.png'],
-            studentPhotos: [
-              'https://www.svgrepo.com/show/502898/user-group.svg',
-            ],
-          },
-        ]}
-      />
+      <TaskList tasks={taskInform} />
+      <NewTask submit={newTaskList} />
     </>
   );
 }
