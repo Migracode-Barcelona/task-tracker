@@ -15,7 +15,7 @@ const NewTaskForm = ({ handleButton }) => {
 
   return (
     <div className={styles.taskBox}>
-      <div>
+      <div className={styles.eachInputBox}>
         <label htmlFor="taskName">Task Name: </label>
         <input
           type="text"
@@ -25,7 +25,7 @@ const NewTaskForm = ({ handleButton }) => {
           onChange={(e) => setTextTask(e.target.value)}
         />
       </div>
-      <div>
+      <div className={styles.eachInputBox}>
         <label htmlFor="projectName">Project Name: </label>
         <input
           type="text"
@@ -35,7 +35,7 @@ const NewTaskForm = ({ handleButton }) => {
           onChange={(e) => setTextProject(e.target.value)}
         />
       </div>
-      <div>
+      <div className={styles.eachInputBox}>
         <label htmlFor="state">Project Status: </label>
         <input
           type="text"
@@ -45,7 +45,7 @@ const NewTaskForm = ({ handleButton }) => {
           onChange={(e) => setProjectStatus(e.target.value)}
         />
       </div>
-      <div>
+      <div className={styles.eachInputBox}>
         <label htmlFor="participants">Assign Participants: </label>
         <input
           type="text"
@@ -55,7 +55,7 @@ const NewTaskForm = ({ handleButton }) => {
           onChange={(e) => setParticipants(e.target.value)}
         />
       </div>
-      <div>
+      <div className={styles.eachInputBox}>
         <label htmlFor="date">Pick Deadline:</label>
         <input
           value={deadline}
