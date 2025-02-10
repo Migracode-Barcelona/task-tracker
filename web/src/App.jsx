@@ -50,7 +50,10 @@ function App() {
       {
         id: `T${prevTaskInfo.length + 1}`,
         ProjectTask: taskName,
-        ProjectStatus: ProjectStatus,
+        ProjectStatus: ProjectStatus.toLowerCase()
+          .split(' ')
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' '),
         date: deadline,
         participants: participants.split(','),
         project: projectName,
