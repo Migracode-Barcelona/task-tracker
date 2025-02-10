@@ -13,6 +13,14 @@ const NewTaskForm = ({ handleButton }) => {
 
   const [deadline, setDeadline] = useState('');
 
+  const clearFields = () => {
+    setTextTask('');
+    setTextProject('');
+    setProjectStatus('');
+    setParticipants('');
+    setDeadline('');
+  };
+
   return (
     <div className={styles.taskBox}>
       <h2 className={styles.titleName}>Add A New Task</h2>
@@ -81,6 +89,7 @@ const NewTaskForm = ({ handleButton }) => {
             participants,
             textProject,
           );
+          clearFields();
         }}
       >
         Create Task
