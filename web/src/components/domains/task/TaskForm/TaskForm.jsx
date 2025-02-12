@@ -1,7 +1,30 @@
+import { useState } from 'react';
 import styles from './TaskForm.module.css';
 import { PropTypes } from 'prop-types';
 
-function TaskForm(props) {
+function TaskForm({ handleClick }) {
+  const [taskTitle, setTaskTitle] = useState('');
+  const [taskProject, setTaskProject] = useState('');
+
+  function submitTask() {
+    if (!taskTitle.trim() || !taskProject.trim()) {
+      alert('Please enter both title and project name.');
+      return;
+    }
+
+    const newTask = {
+      title: taskTitle,
+      priority: 'Medium',
+      realiseDate: new Date().toLocaleDateString(),
+      designers: 'Unassigned',
+      projectName: taskProject,
+    };
+
+    handleClick(newTask); // Send the new task to App component
+    setTaskTitle('');
+    setTaskProject('');
+  }
+
   return (
     <form className={styles.formWrapper}>
       <h1 className={styles.headingStyle}>New Task</h1>
@@ -11,8 +34,10 @@ function TaskForm(props) {
           Title
           <input
             type="text"
-            name="taskTitle"
+            id="taskTitle"
             className={styles.taskInputStyle}
+            value={taskTitle}
+            onChange={(e) => setTaskTitle(e.target.value)}
             required
           />
         </label>
@@ -22,36 +47,19 @@ function TaskForm(props) {
           Project
           <input
             type="text"
-            name="taskProject"
+            id="taskProject"
             className={styles.taskInputStyle}
+            value={taskProject}
+            onChange={(e) => setTaskProject(e.target.value)}
             required
           />
         </label>
-
-        {/* 
-        <label htmlFor="taskPriority" className={styles.taskLabelStyle}>
-          Priority
-          <fieldset className={styles.radios}>
-            <label htmlFor="low">
-              <input type="radio" name="low" id="lowPriority" />
-              {' Low'}
-            </label>
-            <label htmlFor="medium">
-              <input type="radio" name="medium" id="mediumPriority" />
-              {' Medium'}
-            </label>
-            <label htmlFor="high">
-              <input type="radio" name="high" id="highPriority" />
-              {' High'}
-            </label>
-          </fieldset>
-        </label> */}
       </fieldset>
       <input
         type="button"
         value="Add task"
         className={styles.formButton}
-        onClick={props.handleClick}
+        onClick={submitTask}
       />
     </form>
   );
