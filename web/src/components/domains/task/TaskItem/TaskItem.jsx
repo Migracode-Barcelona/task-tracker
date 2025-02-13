@@ -12,8 +12,8 @@ Add the necessary props to the component.
 export function TaskItem({
   title,
   priority,
-  realiseDate,
-  designers,
+  releaseDate,
+  assignedTo,
   projectName,
 }) {
   const getPriorityClass = () => {
@@ -33,11 +33,11 @@ export function TaskItem({
       </div>
       <div className={`${styles.dateStyle}`}>
         <SunIcon />
-        <div>{realiseDate}</div>
+        <div>{releaseDate}</div>
       </div>
-      <div className={`${styles.designersStyle}`}>
+      <div className={`${styles.assignedToStyle}`}>
         <PersIcon />
-        <div>{designers}</div>
+        <div>{assignedTo}</div>
       </div>
       <div className={`${styles.projectStyle}`}>{projectName}</div>
     </div>
@@ -47,7 +47,7 @@ export function TaskItem({
 TaskItem.propTypes = {
   title: PropTypes.string.isRequired,
   priority: PropTypes.string.isRequired,
-  realiseDate: PropTypes.string.isRequired,
-  designers: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  assignedTo: PropTypes.string.isRequired,
   projectName: PropTypes.string.isRequired,
 };
