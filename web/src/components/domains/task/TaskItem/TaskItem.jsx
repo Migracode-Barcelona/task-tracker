@@ -25,21 +25,21 @@ export function TaskItem({
 
   return (
     <div className={styles.itemWrapper}>
-      <div className={`${styles.titleStyle}`}>{title}</div>
+      <div className={`${styles.title}`}>{title}</div>
       <div>
-        <div className={`${styles.priorityStyle} ${getPriorityClass()}`}>
+        <div className={`${styles.priority} ${getPriorityClass()}`}>
           {priority}
         </div>
       </div>
-      <div className={`${styles.dateStyle}`}>
+      <div className={`${styles.date}`}>
         <SunIcon />
         <div>{releaseDate}</div>
       </div>
-      <div className={`${styles.assignedToStyle}`}>
+      <div className={`${styles.assignedTo}`}>
         <PersIcon />
         <div>{assignedTo}</div>
       </div>
-      <div className={`${styles.projectStyle}`}>{projectName}</div>
+      <div className={`${styles.project}`}>{projectName}</div>
     </div>
   );
 }
