@@ -15,12 +15,12 @@ function TaskForm({ handleClick }) {
     const newTask = {
       title: taskTitle,
       priority: 'Medium',
-      realiseDate: new Date().toLocaleDateString(),
-      designers: 'Unassigned',
+      releaseDate: new Date().toLocaleDateString(),
+      assignedTo: 'Unassigned',
       projectName: taskProject,
     };
 
-    handleClick(newTask); // Send the new task to App component
+    handleClick(newTask);
     setTaskTitle('');
     setTaskProject('');
   }
