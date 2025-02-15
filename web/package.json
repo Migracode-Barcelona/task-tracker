@@ -9,7 +9,7 @@
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx",
     "preview": "vite preview",
-    "update-upstream": "node scripts/setup.js git@github.com:Migracode-Barcelona/task-tracker.git"
+    "update-upstream": "node scripts/setup.js https://github.com/Migracode-Barcelona/task-tracker.git"
   },
   "dependencies": {
     "react": "^18.3.1",
