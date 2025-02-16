@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import styles from './new-task.module.css';
+import styles from './NewTask.module.css';
 import { PropTypes } from 'prop-types';
 
 const NewTaskForm = ({ onHandleNewTask }) => {
@@ -103,11 +103,11 @@ const NewTaskForm = ({ onHandleNewTask }) => {
 };
 
 NewTaskForm.propTypes = {
-  textTaskTask: PropTypes.string.isRequired,
-  textProject: PropTypes.string.isRequired,
-  projectStatus: PropTypes.string.isRequired,
-  deadline: PropTypes.string.isRequired,
-  participants: PropTypes.string.isRequired,
+  textTaskTask: PropTypes.string,
+  textProject: PropTypes.string,
+  projectStatus: PropTypes.string,
+  deadline: PropTypes.string,
+  participants: PropTypes.string,
   onHandleNewTask: PropTypes.func.isRequired,
 };
 
