@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styles from './new-task.module.css';
 import { PropTypes } from 'prop-types';
 
-const NewTaskForm = ({ handleButton }) => {
+const NewTaskForm = ({ onHandleNewTask }) => {
   const [textTask, setTextTask] = useState('');
   const [textProject, setTextProject] = useState('');
 
@@ -82,7 +82,7 @@ const NewTaskForm = ({ handleButton }) => {
       <button
         className={styles.clickButton}
         onClick={() => {
-          handleButton(
+          onHandleNewTask(
             textTask,
             ProjectStatus,
             deadline,
@@ -104,7 +104,7 @@ NewTaskForm.propTypes = {
   ProjectStatus: PropTypes.string.isRequired,
   deadline: PropTypes.string.isRequired,
   participants: PropTypes.string.isRequired,
-  handleButton: PropTypes.func.isRequired,
+  onHandleNewTask: PropTypes.func.isRequired,
 };
 
 export default NewTaskForm;

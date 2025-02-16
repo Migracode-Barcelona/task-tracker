@@ -65,7 +65,7 @@ function App() {
     <>
       <TaskList TaskListInfo={TaskListInfo}></TaskList>
 
-      <NewTaskForm handleButton={newTask}></NewTaskForm>
+      <NewTaskForm onHandleNewTask={newTask}></NewTaskForm>
     </>
   );
 }
