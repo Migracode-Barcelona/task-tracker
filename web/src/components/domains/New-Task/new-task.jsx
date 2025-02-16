@@ -7,7 +7,7 @@ const NewTaskForm = ({ onHandleNewTask }) => {
   const [textTask, setTextTask] = useState('');
   const [textProject, setTextProject] = useState('');
 
-  const [ProjectStatus, setProjectStatus] = useState('');
+  const [projectStatus, setProjectStatus] = useState('');
 
   const [participants, setParticipants] = useState('');
 
@@ -49,7 +49,7 @@ const NewTaskForm = ({ onHandleNewTask }) => {
         <label htmlFor="state">Project Status: </label>
         <input
           type="text"
-          value={ProjectStatus}
+          value={projectStatus}
           id="state"
           className={styles.status}
           onChange={(e) => setProjectStatus(e.target.value)}
@@ -84,7 +84,7 @@ const NewTaskForm = ({ onHandleNewTask }) => {
         onClick={() => {
           onHandleNewTask(
             textTask,
-            ProjectStatus,
+            projectStatus,
             deadline,
             participants,
             textProject,
@@ -101,7 +101,7 @@ const NewTaskForm = ({ onHandleNewTask }) => {
 NewTaskForm.propTypes = {
   textTaskTask: PropTypes.string.isRequired,
   textProject: PropTypes.string.isRequired,
-  ProjectStatus: PropTypes.string.isRequired,
+  projectStatus: PropTypes.string.isRequired,
   deadline: PropTypes.string.isRequired,
   participants: PropTypes.string.isRequired,
   onHandleNewTask: PropTypes.func.isRequired,
