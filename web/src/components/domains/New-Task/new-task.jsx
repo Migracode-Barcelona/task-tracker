@@ -21,6 +21,16 @@ const NewTaskForm = ({ onHandleNewTask }) => {
     setDeadline('');
   };
 
+  function handleOnClickButton() {
+    onHandleNewTask(
+      textTask,
+      projectStatus,
+      deadline,
+      participants,
+      textProject,
+    );
+  }
+
   return (
     <div className={styles.taskBox}>
       <h2 className={styles.titleName}>Add A New Task</h2>
@@ -82,13 +92,7 @@ const NewTaskForm = ({ onHandleNewTask }) => {
       <button
         className={styles.clickButton}
         onClick={() => {
-          onHandleNewTask(
-            textTask,
-            projectStatus,
-            deadline,
-            participants,
-            textProject,
-          );
+          handleOnClickButton();
           clearFields();
         }}
       >
