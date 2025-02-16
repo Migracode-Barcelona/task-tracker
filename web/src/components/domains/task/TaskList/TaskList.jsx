@@ -11,7 +11,7 @@ function TaskList(props) {
             ProjectTask={listItem.ProjectTask}
             ProjectStatus={listItem.ProjectStatus}
             date={listItem.date}
-            participants={`${listItem.participants[0]}, ${listItem.participants[1]}`}
+            participants={`${listItem.participants.join(', ')}`}
             project={listItem.project}
           />
         );
