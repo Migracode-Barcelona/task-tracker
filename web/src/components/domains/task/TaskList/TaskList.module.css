@@ -1,0 +1,10 @@
+.listWrapper {
+  width: 80%;
+  margin: 20px auto;
+  background: #f5f6f8;
+  padding: 50px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

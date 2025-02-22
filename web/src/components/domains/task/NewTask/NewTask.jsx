@@ -26,6 +26,8 @@ function NewTask({ tasksItems, setTasksItems }) {
         type="text"
         value={taskNameState}
         onChange={(event) => setNewTask(event.target.value)}
+        name="username"
+        required
       />
       <label htmlFor="taskDescription">Task Description:</label>
       <input
@@ -34,6 +36,8 @@ function NewTask({ tasksItems, setTasksItems }) {
         type="text"
         value={taskDescriptionState}
         onChange={(event) => setNewTaskDescription(event.target.value)}
+        name="username"
+        required
       />
       <button
         className={styles.newTaskButton}

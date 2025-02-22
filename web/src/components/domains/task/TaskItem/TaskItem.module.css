@@ -1,0 +1,32 @@
+.itemWrapper {
+  background-color: #e2e6eb;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  align-content: center;
+}
+
+.priorityLow {
+  background-color: green;
+  border-radius: 5px;
+  padding: 5px 8px;
+  color: white;
+}
+
+.priorityMedium {
+  background-color: #f2c94c;
+  border-radius: 2px;
+  border-radius: 5px;
+  padding: 5px 8px;
+  color: white;
+}
+
+.priorityHigh {
+  background-color: #eb5757;
+  border-radius: 2px;
+  border-radius: 5px;
+  padding: 5px 8px;
+  color: white;
+}
