@@ -1,0 +1,70 @@
+:root {
+  display: grid;
+  justify-items: center;
+  margin-top: 150px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1.5fr;
+  justify-items: center;
+  margin-bottom: 20px;
+  padding: 17px;
+  border: 1px solid rgb(225, 228, 235);
+  border-radius: 15px;
+  background-color: rgb(225, 228, 235);
+}
+
+.buttonRed {
+  background-color: red;
+  color: white;
+  width: 60px;
+  height: 20px;
+  border-radius: 15px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.buttonOrange {
+  background-color: orange;
+  color: white;
+  width: 60px;
+  height: 20px;
+  border-radius: 15px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.buttonGreen {
+  background-color: green;
+  color: white;
+  width: 60px;
+  height: 20px;
+  border-radius: 15px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.deadlineBox,
+.participantBox {
+  display: flex;
+}
+
+.Task,
+.project,
+.taskDate,
+.participants {
+  font-size: 15px;
+  text-align: start;
+  margin-left: 5px;
+}
+
+.ParticipantIcon {
+  width: 20px;
+}
+
+.SunsetIcon {
+  width: 17px;
+  height: 17px;
+  margin-right: 5px;
+}

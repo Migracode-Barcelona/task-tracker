@@ -1,0 +1,62 @@
+.taskBox {
+  border: 1px solid rgb(182, 186, 196);
+  background-color: rgb(225, 228, 235);
+  box-shadow: 1px 1px 1px grey;
+  border-radius: 20px;
+  margin-top: 90px;
+  margin-bottom: 90px;
+  padding: 20px;
+}
+
+input {
+  width: 70%;
+  height: 40px;
+  font-size: 19px;
+  padding: 10px;
+  margin-left: 12px;
+  background-color: rgb(246, 246, 246);
+  border: 2px solid rgb(225, 228, 235);
+  border-radius: 5px;
+}
+
+label {
+  font-size: 22px;
+}
+
+.eachInputBox {
+  margin-bottom: 20px;
+  border: 1px solid rgb(225, 228, 235);
+  background-color: rgb(246, 246, 246);
+  padding: 10px;
+}
+
+.date {
+  padding-left: 30px;
+}
+
+.titleName {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.clickButton {
+  margin-bottom: 50px;
+  margin-left: 30px;
+  border: 3px solid grey;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(12, 12, 12);
+  text-shadow: 1px 2px 2px grey;
+  box-shadow: 1px 2px 2px white;
+  width: 120px;
+  height: 40px;
+}
+
+.clickButton:hover {
+  width: 125px;
+  height: 45px;
+}
