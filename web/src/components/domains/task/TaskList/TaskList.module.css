@@ -1,0 +1,7 @@
+.listWrapper {
+  padding: 5px;
+  max-width: 800px;
+  margin: auto;
+  background-color: rgb(241, 234, 234);
+  border-radius: 7px;
+}

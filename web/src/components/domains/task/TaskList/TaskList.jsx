@@ -1,14 +1,35 @@
+import TaskItem from '../TaskItem/TaskItem';
 import styles from './TaskList.module.css';
-
-/*
-Please create the <TaskList /> component following the design from the Figma file.
-Please make sure to add styles using CSS Modules.
-Create a taskItems array and return a list of <TaskItem /> components.
-*/
-
-export function TaskList() {
-  // create some task items here and return one task list for each item you have
-  const taskItems = [];
-
-  return <div className={styles.listWrapper}></div>;
+import PropTypes from 'prop-types';
+function TaskList({ tasks }) {
+  return (
+    <div className={styles.listWrapper}>
+      {tasks.map((task) => (
+        <TaskItem
+          key={task.id}
+          ProjectName={task.ProjectName}
+          Priority={task.Priority}
+          DueDate={task.DueDate}
+          Assignee={task.Assignee}
+          Project={task.Project}
+        />
+      ))}
+    </div>
+  );
 }
+
+// PropTypes validation
+TaskList.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      ProjectName: PropTypes.string.isRequired,
+      Priority: PropTypes.string.isRequired,
+      DueDate: PropTypes.string.isRequired,
+      Assignee: PropTypes.string.isRequired,
+      Project: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};
+
+export default TaskList;
