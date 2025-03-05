@@ -1,23 +1,31 @@
 import styles from './TaskItem.module.css';
 
-export function TaskItem(props) {
+export function TaskItem({ name, priority, dueDate, assignees, project }) {
   return (
     <div className={styles.itemWrapper}>
-      <span className={styles.taskName}>{props.name}</span>
+      <span className={styles.taskName}>{name}</span>
       <span
         className={
-          props.priority === 'Low'
+          priority === 'Low'
             ? styles.priorityLow
-            : props.priority === 'Medium'
+            : priority === 'Medium'
               ? styles.priorityMedium
               : styles.priorityHigh
         }
       >
-        {props.priority}
+        {priority}
       </span>
-      <span className={styles.dueDate}>{props.dueDate}</span>
-      <span className={styles.assignees}>{props.assignees} </span>
-      <span className={styles.project}>{props.project}</span>
+      <span className={styles.dueDate}>{dueDate}</span>
+      <span className={styles.assignees}>{assignees} </span>
+      <span className={styles.project}>{project}</span>
     </div>
   );
 }
+
+TaskItem.defaultProps = {
+  name: 'Untitled Task',
+  priority: 'Medium',
+  dueDate: 'No due date',
+  assignees: 'No assignees',
+  project: 'Unassigned project',
+};
