@@ -2,6 +2,7 @@ import { TaskList } from './components/domains/task/TaskList/TaskList';
 import NewTask from './components/domains/task/NewTask/NewTask';
 import { useState } from 'react';
 import { Link, Routes, Route } from 'react-router-dom';
+import NewTaskPage from './pages/NewTaskPage';
 
 function App() {
   const [tasksItems, setTasksItems] = useState([
@@ -49,7 +50,10 @@ function App() {
         <Route
           path="/"
           element={
-            <NewTask tasksItems={tasksItems} setTasksItems={setTasksItems} />
+            <NewTaskPage
+              tasksItems={tasksItems}
+              setTasksItems={setTasksItems}
+            />
           }
         />
         <Route path="/tasks" element={<TaskList tasksItems={tasksItems} />} />
