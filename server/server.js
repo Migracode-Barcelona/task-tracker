@@ -1,13 +1,14 @@
-const express = require('express');
+import express from 'express'
+import cors from 'cors'; // added
 const app = express();
 import {allTasks} from './data/tasks.js';
 const port = process.env.PORT || 3333;
 
-// ...existing code...
 app.use(express.json());
+app.use(cors()); // added
 
 app.get('/tasks', (req, res) => {
-	res.json(allTasks);
+	res.json(Array.from(allTasks.values()));
 });
 
 app.post('/tasks', (req, res) => {

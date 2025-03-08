@@ -4,6 +4,7 @@ import { useFetchData } from './hooks/useFetchData';
 
 function App() {
   const { data: tasks, error, isLoading } = useFetchData('tasks');
+console.log(tasks);
 
   return (
     <>

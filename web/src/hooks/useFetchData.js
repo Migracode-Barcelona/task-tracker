@@ -9,12 +9,16 @@ export const useFetchData = (endpoint) => {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      
       try {
-        const response = await fetch(`/api/${endpoint}`);
+        // Removed extra slash before "http://"
+        const response = await fetch(`http://localhost:3333/${endpoint}`);
         if (!response.ok) {
           throw new Error('Something went wrong!');
         }
         const data = await response.json();
+        console.log("🚀 ~ fetchData ~ data:", data)
+        
         setData(data);
       } catch (error) {
         setError(error.message);

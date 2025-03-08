@@ -9,21 +9,21 @@ import { DataFetchingDemoPage } from './pages/DataFetchingDemoPage.jsx';
 import { TaskLayout } from './pages/TaskLayout/TaskLayout.jsx';
 import { TaskForm } from './components/domains/task/TaskForm/TaskForm';
 
-async function enableMocking() {
-  if (import.meta.env === 'development') {
-    return;
-  }
+// async function enableMocking() {
+//   if (import.meta.env === 'development') {
+//     return;
+//   }
 
-  const { worker } = await import('./mocks/browser');
+//   const { worker } = await import('./mocks/browser');
 
-  // `worker.start()` returns a Promise that resolves
-  // once the Service Worker is up and ready to intercept requests.
-  return worker.start({
-    onUnhandledRequest: 'bypass', // Allows non-mocked requests to pass through
-  });
-}
+//   // `worker.start()` returns a Promise that resolves
+//   // once the Service Worker is up and ready to intercept requests.
+//   return worker.start({
+//     onUnhandledRequest: 'bypass', // Allows non-mocked requests to pass through
+//   });
+// }
 
-enableMocking().then(() => {
+// enableMocking().then(() => {
   createRoot(document.getElementById('root')).render(
     <StrictMode>
       <BrowserRouter>
@@ -43,4 +43,4 @@ enableMocking().then(() => {
       </BrowserRouter>
     </StrictMode>,
   );
-});
+// });
