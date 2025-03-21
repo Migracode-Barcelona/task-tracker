@@ -9,7 +9,8 @@
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx",
     "preview": "vite preview",
-    "update-upstream": "node scripts/setup.js https://github.com/Migracode-Barcelona/task-tracker.git"
+    "update-upstream": "node scripts/setup.js https://github.com/Migracode-Barcelona/task-tracker.git",
+    "start:server": "nodemon server.js"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -30,6 +31,7 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "msw": "^2.7.0",
+    "nodemon": "^3.1.9",
     "prettier": "^3.4.2",
     "vite": "^6.0.5"
   },
