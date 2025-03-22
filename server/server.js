@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { generateJWT } from "./utils/jwt.js";
 import { v4 as uuidv4 } from "uuid";
 import { allTasks } from "./data/tasks.js";
@@ -13,14 +14,46 @@ const port = process.env.PORT || 3333;
 app.use(express.json());
 app.use(cors());
 
-// Read (GET) all tasks
+function authenticate(req, res, next) {
+  console.log("middleware starts here");
+  // Get token from request headers
+  let token = req.header("authorization");
 
-app.get("/tasks", (req, res) => {
+  // Check if token exists
+  if (!token) {
+    return res
+      .status(403)
+      .send({ message: "authorization denied", isAuthenticated: false });
+  }
+
+  console.log(token);
+  token = token.split(" ")[1];
+
+  // Verify token using jwt
+  try {
+    /* this will return the user id (user:{id: user_id}) which we 
+    provided as payload while generating JWT token */
+    const verify = jwt.verify(token, process.env.jwtSecret);
+
+    req.user = verify.user;
+
+    console.log("middleware continues here");
+    next();
+    console.log("middleware ends here");
+  } catch (err) {
+    return res
+      .status(401)
+      .send({ message: "Token is not valid", isAuthenticated: false });
+  }
+}
+
+// Read (GET) all tasks
+app.get("/tasks", authenticate, (req, res) => {
   return res.json(Array.from(allTasks.values()));
 });
 
 // Read (GET) one specific task
-app.get("/tasks/:id", (req, res) => {
+app.get("/tasks/:id", authenticate, (req, res) => {
   const { id } = req.params;
   if (allTasks.has(id)) {
     return res.json(allTasks.get(id));
@@ -31,7 +64,7 @@ app.get("/tasks/:id", (req, res) => {
 
 // Update (PUT) a task (full update)
 
-app.put("/tasks/:id", (req, res) => {
+app.put("/tasks/:id", authenticate, (req, res) => {
   const { id } = req.params;
   const updatedTask = req.body;
 
@@ -46,7 +79,7 @@ app.put("/tasks/:id", (req, res) => {
 
 // Create (POST) a new task
 
-app.post("/tasks", (req, res) => {
+app.post("/tasks", authenticate, (req, res) => {
   const newTask = {
     id: uuidv4(),
     ...req.body,
@@ -57,7 +90,7 @@ app.post("/tasks", (req, res) => {
 
 // Delete (DELETE) a task
 
-app.delete("/tasks/:id", (req, res) => {
+app.delete("/tasks/:id", authenticate, (req, res) => {
   const { id } = req.params;
   if (allTasks.has(id)) {
     allTasks.delete(id);
@@ -68,7 +101,7 @@ app.delete("/tasks/:id", (req, res) => {
 });
 
 // Sign up endpoint
-app.post("/signup", async (req, res) => {
+app.post("/signup", (req, res) => {
   const { name, email, password } = req.body;
 
   if (allUsers.has(email)) {
