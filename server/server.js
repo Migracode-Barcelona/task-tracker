@@ -49,13 +49,21 @@ function authenticate(req, res, next) {
 
 // Read (GET) all tasks
 app.get("/tasks", authenticate, (req, res) => {
-  return res.json(Array.from(allTasks.values()));
+  // Filter tasks by owner
+  const tasksFromUser = Array.from(allTasks.values()).filter((task) => {
+    return task.owner === req.user.email;
+  });
+  return res.json(tasksFromUser);
 });
 
 // Read (GET) one specific task
 app.get("/tasks/:id", authenticate, (req, res) => {
   const { id } = req.params;
   if (allTasks.has(id)) {
+    const task = allTasks.get(id);
+    if (task.owner !== req.user.email) {
+      return res.status(403).json({ message: "Go away!" });
+    }
     return res.json(allTasks.get(id));
   } else {
     return res.status(404).json({ message: "Task not found" });
@@ -68,8 +76,13 @@ app.put("/tasks/:id", authenticate, (req, res) => {
   const { id } = req.params;
   const updatedTask = req.body;
 
-  if (allTasks.has(id)) {
-    // Replace the entire task with the new data
+  const task = allTasks.get(id);
+  if (task) {
+    const owner = task.owner;
+    if (owner !== req.user.email) {
+      return res.status(403).json({ message: "Go away!" });
+    }
+
     allTasks.set(id, { id, ...updatedTask });
     return res.json(allTasks.get(id));
   } else {
@@ -82,6 +95,7 @@ app.put("/tasks/:id", authenticate, (req, res) => {
 app.post("/tasks", authenticate, (req, res) => {
   const newTask = {
     id: uuidv4(),
+    owner: req.user.email,
     ...req.body,
   };
   allTasks.set(newTask.id, newTask);
@@ -92,7 +106,13 @@ app.post("/tasks", authenticate, (req, res) => {
 
 app.delete("/tasks/:id", authenticate, (req, res) => {
   const { id } = req.params;
-  if (allTasks.has(id)) {
+  const task = allTasks.get(id);
+  if (task) {
+    const owner = task.owner;
+    if (owner !== req.user.email) {
+      return res.status(403).json({ message: "Go away!" });
+    }
+
     allTasks.delete(id);
     return res.status(204).end();
   } else {

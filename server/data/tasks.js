@@ -9,6 +9,7 @@ const task1 = {
   releaseDate: "12/05/2025",
   assignedTo: "Said, Rachael",
   projectName: "Time App",
+  owner: "email@domain.com",
 };
 
 const task2 = {
@@ -18,6 +19,7 @@ const task2 = {
   releaseDate: "09/03/2025",
   assignedTo: "Umair, Precious",
   projectName: "ASA Darkmode Feature",
+  owner: "email@domain.com",
 };
 
 const task3 = {
@@ -27,6 +29,7 @@ const task3 = {
   releaseDate: "15/04/2025",
   assignedTo: "Michael, Ricardo",
   projectName: "Time App",
+  owner: "email@domain.com",
 };
 
 const task4 = {
@@ -36,6 +39,7 @@ const task4 = {
   releaseDate: "11/03/2025",
   assignedTo: "Ebtesam, Deborah",
   projectName: "Time App",
+  owner: "email@another-domain.com",
 };
 
 allTasks
