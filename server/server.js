@@ -7,10 +7,44 @@ import { v4 as uuidv4 } from "uuid";
 import { allUsers } from "./data/users.js";
 import { generateJWT } from "./utils/generateJWT.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 // ...existing code...
 app.use(express.json());
 app.use(cors());
+
+function authenticate(req, res, next) {
+  console.log("middleware starts here");
+  // Get token from request headers
+  let token = req.header("authorization");
+
+  // Check if token exists
+  if (!token) {
+    return res
+      .status(403)
+      .send({ message: "authorization denied", isAuthenticated: false });
+  }
+
+  console.log(token);
+  token = token.split(" ")[1];
+
+  // Verify token using jwt
+  try {
+    /* this will return the user id (user:{id: user_id}) which we 
+    provided as payload while generating JWT token */
+    const verify = jwt.verify(token, process.env.jwtSecret);
+
+    req.user = verify.user;
+
+    console.log("middleware continues here");
+    next();
+    console.log("middleware ends here");
+  } catch (err) {
+    res
+      .status(401)
+      .send({ message: "Token is not valid", isAuthenticated: false });
+  }
+}
 
 // Read (GET) all tasks
 
@@ -20,7 +54,7 @@ app.get("/tasks", (req, res) => {
 
 // Update (PUT) a task (full update)
 
-app.put("/tasks/:id", (req, res) => {
+app.put("/tasks/:id", authenticate, (req, res) => {
   const { id } = req.params;
   const updatedTask = req.body;
 
@@ -73,6 +107,7 @@ app.post("/signup", (req, res) => {
     const newUser = {
       name: name,
       email: email,
+      salt: salt,
       password: bcryptPassword,
     };
 
@@ -87,21 +122,29 @@ app.post("/signup", (req, res) => {
 });
 
 // Login endpoint
-app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
 
-  // Simple demo user validation
-  if (username === "demo" && password === "password123") {
-    res.json({
-      success: true,
-      username: "demo",
-      name: "Demo User",
-    });
-  } else {
-    res.status(401).json({
-      success: false,
-      message: "Invalid username or password",
-    });
+  try {
+    //Check if user exists
+    const user = allUsers.get(email);
+    if (!user) {
+      return res
+        .status(401)
+        .json({ error: "Invalid user", isAuthenticated: false });
+    }
+    const isValidPassword = await bcrypt.compare(password, user.password);
+
+    if (!isValidPassword) {
+      return res
+        .status(401)
+        .json({ error: "Invalid password", isAuthenticated: false });
+    }
+    const jwtToken = generateJWT(user.email);
+
+    res.status(200).json({ token: jwtToken, isAuthenticated: true });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 });
 
