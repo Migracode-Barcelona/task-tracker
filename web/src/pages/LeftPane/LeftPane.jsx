@@ -1,5 +1,5 @@
 import styles from './LeftPane.module.css';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 export function LeftPane() {
   return (
@@ -16,6 +16,9 @@ export function LeftPane() {
         <p>Project view</p>
         <NavLink to="/new-task" end>
           Add a task
+        </NavLink>
+        <NavLink to="/login" end>
+          Login
         </NavLink>
       </div>
     </div>
