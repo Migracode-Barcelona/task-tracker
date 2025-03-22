@@ -6,6 +6,9 @@ export function Login() {
     username: '',
     password: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [loginResult, setLoginResult] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -14,15 +17,52 @@ export function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here we would handle authentication logic
-    console.log('Login attempt with:', formData);
+    setIsLoading(true);
+    setError(null);
+    setLoginResult(null);
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Login failed');
+      }
+
+      setLoginResult(data);
+      console.log('Login successful:', data);
+
+      // Here you could redirect or update UI based on successful login
+      // For now, we'll just display the result
+    } catch (error) {
+      setError(error.message);
+      console.error('Login error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className={styles.loginContainer}>
       <h2>Login</h2>
+
+      {error && <div className={styles.error}>{error}</div>}
+
+      {loginResult && loginResult.success && (
+        <div className={styles.success}>
+          Login successful! Welcome, {loginResult.name}.
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} className={styles.loginForm}>
         <div className={styles.formGroup}>
           <label htmlFor="username">Username</label>
@@ -46,9 +86,19 @@ export function Login() {
             required
           />
         </div>
-        <button type="submit" className={styles.loginButton}>
-          Login
+        <button
+          type="submit"
+          className={styles.loginButton}
+          disabled={isLoading}
+        >
+          {isLoading ? 'Logging in...' : 'Login'}
         </button>
+
+        <div className={styles.demoCredentials}>
+          <p>Demo credentials:</p>
+          <p>Username: demo</p>
+          <p>Password: password123</p>
+        </div>
       </form>
     </div>
   );
