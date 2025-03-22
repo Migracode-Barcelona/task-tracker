@@ -4,6 +4,9 @@ const port = process.env.PORT || 3333;
 import { allTasks } from "./data/tasks.js";
 import cors from "cors";
 import { v4 as uuidv4 } from "uuid";
+import { allUsers } from "./data/users.js";
+import { generateJWT } from "./utils/generateJWT.js";
+import bcrypt from "bcrypt";
 
 // ...existing code...
 app.use(express.json());
@@ -50,6 +53,36 @@ app.delete("/tasks/:id", (req, res) => {
     res.status(204).end();
   } else {
     res.status(404).json({ message: "Task not found" });
+  }
+});
+
+//Signup endpoint
+app.post("/signup", (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    //Check if user already exists
+    if (allUsers.has(email)) {
+      res.status(400).json({ error: "User already exists" });
+    }
+
+    //Encrypt password before storing it in db
+    const salt = bcrypt.genSalt(10);
+    const bcryptPassword = bcrypt.hash(password, salt);
+
+    const newUser = {
+      name: name,
+      email: email,
+      password: bcryptPassword,
+    };
+
+    allUsers.set(email, newUser);
+
+    //Generate JWT token and return it
+    const jwtToken = generateJWT(newUser.email);
+    return res.status(201).json({ token: jwtToken, isAuthenticated: true });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 });
 
