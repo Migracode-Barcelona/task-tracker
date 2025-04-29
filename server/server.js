@@ -9,6 +9,20 @@ import { generateJWT } from "./utils/generateJWT.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+import pg from "pg";
+const { Pool } = pg;
+
+const pool = new Pool({
+  connectionString: "postgresql:///tasktrackerdb",
+  // Optional: Explicitly set your system username
+  user: "konstantinkovalcuk",
+});
+
+// Test connection
+pool
+  .query("SELECT NOW()")
+  .then((res) => console.log("Database connected at:", res.rows[0].now))
+  .catch((err) => console.error("Database connection error:", err));
 // ...existing code...
 app.use(express.json());
 app.use(cors());
@@ -48,8 +62,57 @@ function authenticate(req, res, next) {
 
 // Read (GET) all tasks
 
-app.get("/tasks", (req, res) => {
-  res.json(Array.from(allTasks.values()));
+app.get("/tasks", async (req, res) => {
+  const result = await pool.query("SELECT * FROM tasks");
+
+  // Transform data before sending
+  const tasks = result.rows.map((task) => ({
+    id: task.id,
+    title: task.title,
+    priority: task.priority,
+    releaseDate: task.release_date, // snake_case → camelCase
+    assignedTo: task.assigned_to,
+    projectName: task.project_name,
+  }));
+
+  res.json(tasks); // Frontend receives clean data
+});
+
+// Create (POST) a new task
+app.post("/tasks", async (req, res) => {
+  try {
+    const { title, projectName } = req.body;
+
+    // Generate default values
+    const id = uuidv4();
+    const priority = "medium";
+    const releaseDate = new Date().toISOString().split("T")[0];
+    const assignedTo = "Unassigned";
+
+    // Insert into database
+    await pool.query(
+      `INSERT INTO tasks 
+       (id, title, priority, release_date, assigned_to, project_name) 
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [
+        id,
+        title,
+        priority,
+        releaseDate,
+        assignedTo,
+        projectName || "No Project",
+      ]
+    );
+
+    res.status(201).json({
+      id,
+      title,
+      projectName: projectName || "No Project",
+    });
+  } catch (error) {
+    console.error("Database error:", error);
+    res.status(500).json({ error: "Failed to create task" });
+  }
 });
 
 // Update (PUT) a task (full update)
@@ -65,17 +128,6 @@ app.put("/tasks/:id", authenticate, (req, res) => {
   } else {
     res.status(404).json({ message: "Task not found" });
   }
-});
-
-// Create (POST) a new task
-
-app.post("/tasks", (req, res) => {
-  const newTask = {
-    id: uuidv4(),
-    ...req.body,
-  };
-  allTasks.set(newTask.id, newTask);
-  res.status(201).json(newTask);
 });
 
 // Delete (DELETE) a task

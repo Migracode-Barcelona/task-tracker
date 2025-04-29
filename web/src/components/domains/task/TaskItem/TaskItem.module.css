@@ -24,21 +24,19 @@
   background-color: var(--light-blue);
   width: fit-content;
   padding: 5px;
+  color: white;
 }
 
 .lowPriority {
-  color: white;
-  background-color: var(--green);
+  background-color: var(--green, green);
 }
 
 .mediumPriority {
-  color: white;
-  background-color: var(--orange);
+  background-color: var(--orange, orange);
 }
 
 .highPriority {
-  color: white;
-  background-color: var(--red);
+  background-color: var(--red, red);
 }
 
 .date {

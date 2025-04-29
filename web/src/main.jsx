@@ -11,6 +11,7 @@ import { TaskForm } from './components/domains/task/TaskForm/TaskForm';
 import { Login } from './pages/Login/Login';
 
 async function enableMocking() {
+  return;
   if (import.meta.env === 'development') {
     return;
   }

@@ -1,33 +1,25 @@
-import { TaskItem } from '../TaskItem/TaskItem';
+import { useFetchData } from '../../../../hooks/useFetchData';
 import styles from './TaskList.module.css';
-import PropTypes from 'prop-types';
+import { TaskItem } from '../TaskItem/TaskItem'; // Correct path
 
-/*
-Please create the <TaskList /> component following the design from the Figma file.
-Please make sure to add styles using CSS Modules.
-Create a taskItems array and return a list of <TaskItem /> components.
-*/
+export default function TaskList() {
+  const { data: tasks, isLoading, error } = useFetchData();
 
-function TaskList({ taskItems }) {
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div className={styles.listWrapper}>
-      {taskItems.map((task, index) => (
-        <TaskItem key={index} {...task} />
+      {tasks?.map((task) => (
+        <TaskItem
+          key={task.id}
+          title={task.title}
+          priority={task.priority}
+          releaseDate={task.releaseDate}
+          assignedTo={task.assignedTo}
+          projectName={task.projectName}
+        />
       ))}
     </div>
   );
 }
-
-export { TaskList };
-
-TaskList.propTypes = {
-  taskItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      priority: PropTypes.string.isRequired,
-      releaseDate: PropTypes.string.isRequired,
-      assignedTo: PropTypes.string.isRequired,
-      projectName: PropTypes.string.isRequired,
-    }),
-  ),
-};
