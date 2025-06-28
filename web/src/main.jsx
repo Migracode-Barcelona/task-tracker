@@ -9,6 +9,7 @@ import { DataFetchingDemoPage } from './pages/DataFetchingDemoPage.jsx';
 import { TaskLayout } from './pages/TaskLayout/TaskLayout.jsx';
 import { TaskForm } from './components/domains/task/TaskForm/TaskForm';
 import { Login } from './pages/Login/Login';
+import Signup from '../src/pages/Signup/Signup.jsx';
 
 async function enableMocking() {
   if (import.meta.env === 'development') {
@@ -41,6 +42,11 @@ enableMocking().then(() => {
           <Route path="/login" element={<TaskLayout />}>
             <Route index element={<Login />} />
           </Route>
+
+          <Route path="/signup" element={<TaskLayout />}>
+            <Route index element={<Signup />} />
+          </Route>
+
           <Route path="datafetching" element={<DataFetchingDemoPage />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
