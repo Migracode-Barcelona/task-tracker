@@ -20,6 +20,9 @@ export function LeftPane() {
         <NavLink to="/login" end>
           Login
         </NavLink>
+        <NavLink to="/signup" end>
+          SignUp
+        </NavLink>
       </div>
     </div>
   );

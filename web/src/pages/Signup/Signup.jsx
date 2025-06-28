@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import styles from './Login.module.css';
+import styles from './Signup.module.css';
 
-export function Login() {
+function Signup() {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [loginResult, setLoginResult] = useState(null);
-
-  const navigate = useNavigate();
+  const [signupResult, setSignupResult] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -24,11 +22,15 @@ export function Login() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-    setLoginResult(null);
-    setFormData({ email: '', password: '' });
+    setSignupResult(null);
+    setFormData({
+      name: '',
+      email: '',
+      password: '',
+    });
 
     try {
-      const response = await fetch('http://localhost:3333/login', {
+      const response = await fetch('http://localhost:3333/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,35 +41,48 @@ export function Login() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Login failed');
+        throw new Error(data.message || 'Signup failed');
       }
-      localStorage.setItem('jwt', data.jwt);
 
-      setLoginResult(data);
-      console.log('Login successful:', data);
+      setSignupResult(data);
+      console.log('Signup successful:', data);
+      if (data.message === 'Signup successful') {
+        setSignupResult(data);
+      }
 
-      navigate('/tasks');
+      // Here you could redirect or update UI based on successful signup
+      // For now, we'll just display the result
     } catch (error) {
       setError(error.message);
-      console.error('Login error:', error);
+      console.error('Signup error:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <h2>Login</h2>
-
+    <div className={styles.signupContainer}>
+      <h2>Sign Up</h2>
       {error && <div className={styles.error}>{error}</div>}
 
-      {loginResult && loginResult.isAuthenticated && (
+      {signupResult && signupResult.message === 'Signup successful' && (
         <div className={styles.success}>
-          Login successful! Welcome, {loginResult.user.name}.
+          SignUp successful! Welcome, {signupResult.user.name}.
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className={styles.loginForm}>
+      <form onSubmit={handleSubmit} className={styles.signupForm}>
+        <div className={styles.formGroup}>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div className={styles.formGroup}>
           <label htmlFor="email">Email</label>
           <input
@@ -92,18 +107,14 @@ export function Login() {
         </div>
         <button
           type="submit"
-          className={styles.loginButton}
+          className={styles.signupButton}
           disabled={isLoading}
         >
-          {isLoading ? 'Logging in...' : 'Login'}
+          {isLoading ? 'Signing up...' : 'Sign Up'}
         </button>
-
-        <div className={styles.demoCredentials}>
-          <p>Demo credentials:</p>
-          <p>Username: demo</p>
-          <p>Password: password123</p>
-        </div>
       </form>
     </div>
   );
 }
+
+export default Signup;

@@ -5,7 +5,7 @@ import { usePostData } from '../../../../hooks/usePostData';
 function TaskForm() {
   const [taskTitle, setTaskTitle] = useState('');
   const [taskProject, setTaskProject] = useState('');
-  const { error, data, fetchData } = usePostData('tasks');
+  const { fetchData } = usePostData('tasks');
 
   function submitTask() {
     if (!taskTitle.trim() || !taskProject.trim()) {
@@ -16,13 +16,12 @@ function TaskForm() {
     const newTask = {
       title: taskTitle,
       priority: 'Medium',
-      releaseDate: new Date().toLocaleDateString(),
+      releaseDate: new Date().toISOString().split('T')[0],
       assignedTo: 'Unassigned',
       projectName: taskProject,
     };
 
     fetchData(newTask);
-
     setTaskTitle('');
     setTaskProject('');
   }
